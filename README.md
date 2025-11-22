@@ -37,12 +37,7 @@ Result: **5 gold tables** that answer 99 % of related banking analytics question
 
 ## Architecture (Medallion)
 
-```mermaid
-graph TD
-    A[Raw CSVs<br>in Files/berka/] --> B[Silver Layer<br>clean 1:1 tables]
-    B --> C[Gold Layer<br>enriched & aggregated]
-    C --> D[Power BI<br>Direct Lake Mode]
-```
+![Architectural diagram of project](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Fabrics_berka_diagram.png)
 
 ## Source Dataset
 The 8 original CSV files can be accessed [here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset).
