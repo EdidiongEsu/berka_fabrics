@@ -11,7 +11,7 @@
 - [Project Goal](#project-goal)
 - [Dataset](#dataset)
 - [Architecture (Medallion)](#architecture-medallion)
-- [Gold Layer – Final Tables](#gold-layer--final-tables)
+- [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [Schema Diagram](#schema-diagram)
 - [How to Reproduce (10 Minutes)](#how-to-reproduce-10-minutes)
 - [Power BI Dashboard](#power-bi-dashboard)
@@ -65,7 +65,7 @@ The 8 original CSV files (can be accessed in this repository [here](https://gith
 | order.csv          | 6,471      | Permanent orders                     |
 | trans.csv          | 1,056,320  | All transactions                     |
 
-## 🥇 Gold Layer – Final Tables
+## Gold Layer Final Tables 🥇 
 #### 📊 Gold Tables Overview
 
 The data output of this project are the **5 production-ready gold tables** that power all downstream analytics. The table below is an overview of the 5 gold tables.
