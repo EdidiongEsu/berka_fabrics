@@ -1,4 +1,5 @@
-# End to End Fabrics Data Engineering Piepeline of Czech Banking Transactions
+# End to End Fabrics Data Engineering Piepeline of Banking Transactions
+**100% Built in Microsoft Fabric • Delta Lake • Power BI Direct Lake**
 
 [![Microsoft Fabric](https://img.shields.io/badge/Microsoft_Fabric-100%25-0066FF?style=for-the-badge&logo=microsoft)](https://fabric.microsoft.com/)
 [![Delta Lake](https://img.shields.io/badge/Delta_Lake-Gold_Layer-00C4B4?style=for-the-badge)](https://delta.io/)
@@ -17,7 +18,8 @@
 - [Instant Business Insights](#instant-business-insights)
 
 ## Overview
-The **PKDD’99 Financial Dataset** (aka **Berka dataset**) is one of the most famous public banking datasets in the world. It contains real anonymized transactional data from a Czech bank (1993–1999):
+The **PKDD’99 Financial Dataset** (aka **Berka dataset**) is one of the most famous public banking datasets in the world. It contains real anonymized transactional data from a Czech bank (1993–1999). 
+The data was ingested from Kaggle via think [this link](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset). The dataset is originally from [here](https://webpages.charlotte.edu/mirsad/itcs6265/group1/index.html). More extensive information about the dataset there.
 
 - 5,369 clients
 - 1,056,320 transactions
@@ -25,24 +27,23 @@ The **PKDD’99 Financial Dataset** (aka **Berka dataset**) is one of the most f
 - 682 loans
 - Full district demographics
 
-This project transforms the raw CSVs into a **production-grade analytics lakehouse** entirely inside **Microsoft Fabric** using the classic **Bronze → Silver → Gold** medallion architecture.
+This project transforms the 8 raw CSVs into a **production-grade analytics lakehouse** entirely inside **Microsoft Fabric** using the classic **Bronze → Silver → Gold** medallion architecture.
 
-Result: **5 gold tables** that answer 99 % of banking analytics questions in seconds — no complex joins, no slow aggregations.
-
-This is currently the **cleanest, fastest, and best-documented Berka implementation** publicly available.
+Result: **5 gold tables** that answer 99 % of related banking analytics questions in seconds.
 
 ## Project Goal
 - Ingest & clean all 8 original CSV files
 - Build a documented Silver layer
 - Deliver a Gold layer optimized for credit-card analytics, client segmentation, and risk
 - Enable instant Power BI dashboards via Direct Lake mode
-- Become the definitive reference implementation of the Berka dataset
+- Fully document a reproducible approach to implementing the project
 
 **Status: 100% complete • Production-ready**
 
 ## Dataset
-Source: https://data.world/lpetrocelli/pkdd99-financial-data  
-8 original CSV files (place them in `Files/berka/` in your lakehouse):
+[Ingestion Source of data is here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset)
+
+The 8 original CSV files (can be accessed in this repository [here](https://github.com/EdidiongEsu/berka_fabrics/tree/main/data/Bronze%20layer)):
 
 | File               | Rows       | Description                          |
 |--------------------|------------|--------------------------------------|
@@ -58,7 +59,6 @@ Source: https://data.world/lpetrocelli/pkdd99-financial-data
 #### Gold tables structure
 Database diagram connection of silver and gold tables:
 ![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
-
 
 ## Architecture (Medallion)
 
