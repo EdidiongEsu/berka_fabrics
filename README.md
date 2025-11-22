@@ -40,7 +40,7 @@ Result: **5 gold tables** that answer 99 % of related banking analytics question
 ![Architectural diagram of project](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Fabrics_berka_diagram.png)
 
 ## Source Dataset
-The 8 original CSV files can be accessed [here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset).
+The 8 original CSV (primarily .asc because it uses ; for value seperationi) files can be accessed [here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset).
 
 The table below is a quick overview of each file. More details also [here](https://webpages.charlotte.edu/mirsad/itcs6265/group1/domain.html)
 
@@ -79,7 +79,7 @@ Database diagram connection of silver and gold tables:
 
 # How to Reproduce
 
-This project uses **Microsoft Fabric Data Factory** to ingest a CSV financial dataset into a Fabric Lakehouse, where PySpark notebooks process the data through the **Bronze → Silver → Gold** layers following the Medallion Architecture.
+This project uses **Microsoft Fabric Data Factory** to ingest 8 CSV (primarily .asc) financial datasets into a Fabric Lakehouse, where PySpark notebooks process the data through the **Bronze → Silver → Gold** layers following the Medallion Architecture.
 
 Follow the steps below to recreate the environment.
 
@@ -92,44 +92,29 @@ You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
 
 ## 2. Create a Workspace
 - Workspaces → **New workspace**
-- Name: `fabric-medallion-project`
+- Name: `berka-medallion-project`
 - Turn ON the following features:
   - Data Engineering
   - Data Factory
   - Power BI
-- Create
 
 ## 3. Create a Fabric Lakehouse
 - In the workspace → **New** → **Lakehouse**
-- Name: `financial_lakehouse`
+- Name: `berka_financial_lakehouse`
 - Inside the Lakehouse → **Files** section → create folder:
-
-
-  
-## 4. Upload Raw CSV Data (Bank Transactions)
-- Download your bank transactions CSV
-- Lakehouse → Files → landing_zone → **Upload**
-- Confirm the file appears as:
-
 
 
 ## 5. Set Up Microsoft Fabric Data Factory
 - In the workspace → **New** → **Data pipeline**
-- Name the pipeline: `pl_financial_medallion`
+- Name the pipeline: `berka-pipeline`
 
 ## 6. Create the Bronze Notebook
-- In the Lakehouse → **New notebook**
-- Name: `bronze_ingest`
-- Paste the following code:
+- In the Lakehouse → **New notebook** or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
+- Name: `Bronze Notebook` and paste the code from the notebook in this repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
 
-```python
-df = (spark.read
-    .option("header", "true")
-    .option("inferSchema", "true")
-    .csv("Files/landing_zone/transactions.csv"))
+  
+  ![Bronze Pic](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/bronze_notebook_pic.png)
 
-df.write.format("delta").mode("overwrite").saveAsTable("bronze_transactions")
-```
 
 7. Create the Silver Notebook
 
