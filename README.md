@@ -10,7 +10,6 @@ Quickly move to the section you are interested in by clicking on the appropriate
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [How to Reproduce](#how-to-reproduce)
 - [Power BI Dashboard](#power-bi-dashboard)
-- [Instant Business Insights](#instant-business-insights)
 
 ## Overview
 The **PKDD’99 Financial Dataset** (aka **Berka dataset**) is one of the most famous public banking datasets in the world. It contains real anonymized transactional data from a Czech bank (1993–1999). 
@@ -56,7 +55,7 @@ The table below is a quick overview of each file. More details also [here](https
 | trans.csv          | 1,056,320  | All transactions                     |
 
 ## Gold Layer Final Tables  
-#### 🥇 Gold Tables Overview
+### 🥇 Gold Tables Overview
 
 The data output of this project are the **5 production-ready gold tables** that power all downstream analytics. The table below is an overview of the 5 gold tables.
 
@@ -76,20 +75,20 @@ Database diagram connection of silver and gold tables:
 
 ---
 
-# How to Reproduce
+## How to Reproduce
 
 This project uses **Microsoft Fabric Data Factory** to ingest 8 CSV (primarily .asc) financial datasets into a Fabric Lakehouse, where PySpark notebooks process the data through the **Bronze → Silver → Gold** layers following the Medallion Architecture.
 
 Follow the steps below to recreate the environment.
 
-## 1. Create a Microsoft Fabric Account
+### 1. Create a Microsoft Fabric Account
 - Go to the Microsoft Fabric portal: https://app.fabric.microsoft.com
 - Sign in with your Microsoft account
 - Enable **Fabric Trial** (if not already active)
 
 You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
 
-## 2. Create a Workspace
+### 2. Create a Workspace
 - Workspaces → **New workspace**
 - Name: `berka-medallion-project`
 - Turn ON the following features:
@@ -97,39 +96,39 @@ You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
   - Data Factory
   - Power BI
 
-## 3. Create a Fabric Lakehouse
+### 3. Create a Fabric Lakehouse
 - In the workspace → **New** → **Lakehouse**
 - Name: `berka_financial_lakehouse`
 - Inside the Lakehouse → **Files** section → create folder:
 
 
-## 5. Set Up Microsoft Fabric Data Factory
+### 5. Set Up Microsoft Fabric Data Factory
 - In the workspace → **New** → **Data pipeline**
 - Name the pipeline: `berka-pipeline`
 
-## 6. Create the Bronze Notebook
+### 6. Create the Bronze Notebook
 - In the Lakehouse, Create a new notebook and name it `Bronze Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
   
   ![Bronze Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/bronze_notebook_pic.png)
 
 
-## 7. Create the Silver Notebook
+### 7. Create the Silver Notebook
 - In the Lakehouse, Create a new notebook and name it `Silver Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Silver%20Notebook.ipynb)
   
   ![Silver Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/silver_notebook_pic.png)
 
   
-## 8. Create the Gold Notebook
+### 8. Create the Gold Notebook
 - In the Lakehouse, Create a new notebook and name it `Gold Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Gold%20Notebook.ipynb)
   
   ![Gold Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/gold_notebook_pic.png)
 
 
-## 9. Connect Data Factory to PySpark Notebooks
+### 9. Connect Data Factory to PySpark Notebooks
 - Open the Data factory created earlier and connect the notebooks created.
    ![Data Factory](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/data_factory_pipeline.png)
 
-## 10. Run the Pipeline
+### 10. Run the Pipeline
 - Trigger a run after connecting all notebooks, and wait for all three notebooks to complete successfully like in the picture below. Then verify that all tables have been created.
     
     ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
