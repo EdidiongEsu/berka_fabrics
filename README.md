@@ -12,7 +12,6 @@
 - [Dataset](#dataset)
 - [Architecture (Medallion)](#architecture-medallion)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
-- [Schema Diagram](#schema-diagram)
 - [How to Reproduce](#how-to-reproduce)
 - [Power BI Dashboard](#power-bi-dashboard)
 - [Instant Business Insights](#instant-business-insights)
@@ -87,7 +86,7 @@ Database diagram connection of silver and gold tables:
 
 ---
 
-# ⚙ How to Reproduce
+# How to Reproduce
 
 100% inside Microsoft Fabric Lakehouse — no Databricks, no ADF.
 
