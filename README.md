@@ -134,4 +134,4 @@ You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
     
     ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
     
-Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
+Well Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
