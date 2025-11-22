@@ -1,4 +1,4 @@
-# End to End Fabrics Data Engineering Piepeline of Banking Transactions
+# End-to-End Fabrics Data Engineering Pipeline of Banking Loan Transactions
 **100% Built in Microsoft Fabric • Delta Lake • Power BI Direct Lake**
 
 [![Microsoft Fabric](https://img.shields.io/badge/Microsoft_Fabric-100%25-0066FF?style=for-the-badge&logo=microsoft)](https://fabric.microsoft.com/)
@@ -40,6 +40,15 @@ Result: **5 gold tables** that answer 99 % of related banking analytics question
 
 **Status: 100% complete • Production-ready**
 
+## Architecture (Medallion)
+
+```mermaid
+graph TD
+    A[Raw CSVs<br>in Files/berka/] --> B[Silver Layer<br>clean 1:1 tables]
+    B --> C[Gold Layer<br>enriched & aggregated]
+    C --> D[Power BI<br>Direct Lake Mode]
+```
+
 ## Dataset
 [Ingestion Source of data is here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset)
 
@@ -56,62 +65,10 @@ The 8 original CSV files (can be accessed in this repository [here](https://gith
 | order.csv          | 6,471      | Permanent orders                     |
 | trans.csv          | 1,056,320  | All transactions                     |
 
-#### Gold tables structure
-Database diagram connection of silver and gold tables:
-![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
+## 🥇 Gold Layer – Final Tables
+#### 📊 Gold Tables Overview
 
-## Architecture (Medallion)
-
-```mermaid
-graph TD
-    A[Raw CSVs<br>in Files/berka/] --> B[Silver Layer<br>clean 1:1 tables]
-    B --> C[Gold Layer<br>enriched & aggregated]
-    C --> D[Power BI<br>Direct Lake Mode]
-```
-
-🥇 Gold Layer – Final Tables
-
-These are the 5 production-ready gold tables that power all downstream analytics.
-
-📊 Gold Tables Overview
-Table	Rows	Description
-z_gold_dim_date	2,922	Full calendar for 1993–2000 (date_sk as PK).
-z_gold_dim_client	5,369	Enriched client dimension (age in 1999, demographics, card/loan flags).
-z_gold_fact_transaction	1,056,320	Fully enriched transaction fact table with client_id, card_type, is_card_transaction, etc.
-z_gold_monthly_card_spending	~35,000	Monthly credit-card KPIs by client + card type.
-z_gold_client_360	5,369	The KING TABLE — one row per client: lifetime spend, latest card, defaulter flag, high-value segments, dormant cards, and more.
-
-✔ These 5 tables answer every analytical question in the Berka dataset.
-
-🗺 Schema Diagram
-
-Interactive Diagram:
-https://dbdiagram.io/d/berka-gold
-
-Or open:
-docs/schema.dbml in dbdiagram.io.
-
-⚙ How to Reproduce (10 Minutes)
-
-Everything runs 100% inside Microsoft Fabric Lakehouse (no Databricks, no ADF).
-
-1. Create Your Environment
-
-Create a Fabric Lakehouse (e.g., berka_lakehouse)
-
-Upload all 8 CSV files into:
-Files/berka/
-
-2. Create Silver Tables
-
-Open a Notebook → Attach to Lakehouse → Run:
-
-
-# 🥇 Gold Layer – Final Tables
-
-These are the **5 production-ready gold tables** that power all downstream analytics.
-
-## 📊 Gold Tables Overview
+The data output of this project are the **5 production-ready gold tables** that power all downstream analytics. The table below is an overview of the 5 gold tables.
 
 | Table | Rows | Description |
 |-------|-------|-------------|
@@ -119,9 +76,17 @@ These are the **5 production-ready gold tables** that power all downstream analy
 | **z_gold_dim_client** | **5,369** | Enriched client dimension (age in 1999, demographics, card/loan flags). |
 | **z_gold_fact_transaction** | **1,056,320** | Fully enriched transaction fact table with `client_id`, `card_type`, `is_card_transaction`, etc. |
 | **z_gold_monthly_card_spending** | **~35,000** | Monthly credit-card KPIs by client + card type. |
-| **z_gold_client_360** | **5,369** | **THE KING TABLE** — one row per client with lifetime spend, latest card, defaulter flag, high-value flags, dormant cards, etc. |
+| **z_gold_client_360** | **5,369** | One row per client with lifetime spend, latest card, defaulter flag, high-value flags, dormant cards, etc. |
 
-> ✔ These 5 tables answer everything.
+#### Gold Tables Connection Diagram
+The robustness of the gold tables meant joins of several cleaned silver tables. This diagram shows the connection between silver and gold tables.
+
+Database diagram connection of silver and gold tables:
+![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
+
+
+
+
 
 ---
 
