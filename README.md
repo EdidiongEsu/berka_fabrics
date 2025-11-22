@@ -13,7 +13,7 @@
 - [Architecture (Medallion)](#architecture-medallion)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [Schema Diagram](#schema-diagram)
-- [How to Reproduce (10 Minutes)](#how-to-reproduce-10-minutes)
+- [How to Reproduce](#how-to-reproduce)
 - [Power BI Dashboard](#power-bi-dashboard)
 - [Instant Business Insights](#instant-business-insights)
 
@@ -85,22 +85,9 @@ Database diagram connection of silver and gold tables:
 ![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
 
 
-
-
-
 ---
 
-# 🗺 Schema Diagram
-
-**Interactive Diagram:**  
-https://dbdiagram.io/d/berka-gold
-
-Or open:  
-`docs/schema.dbml` in dbdiagram.io
-
----
-
-# ⚙ How to Reproduce (10 Minutes)
+# ⚙ How to Reproduce
 
 100% inside Microsoft Fabric Lakehouse — no Databricks, no ADF.
 
