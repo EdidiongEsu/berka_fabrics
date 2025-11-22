@@ -74,7 +74,6 @@ The robustness of the gold tables meant joins of several cleaned silver tables. 
 Database diagram connection of silver and gold tables:
 ![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
 
-
 ---
 
 # How to Reproduce
@@ -109,62 +108,31 @@ You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
 - Name the pipeline: `berka-pipeline`
 
 ## 6. Create the Bronze Notebook
-- In the Lakehouse → **New notebook** or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
-- Name: `Bronze Notebook` and paste the code from the notebook in this repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
+- In the Lakehouse, Create a new notebook and name it `Bronze Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
+  
+  ![Bronze Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/bronze_notebook_pic.png)
+
+
+## 7. Create the Silver Notebook
+- In the Lakehouse, Create a new notebook and name it `Silver Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Silver%20Notebook.ipynb)
+  
+  ![Silver Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/silver_notebook_pic.png)
 
   
-  ![Bronze Pic](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/bronze_notebook_pic.png)
+## 8. Create the Gold Notebook
+- In the Lakehouse, Create a new notebook and name it `Gold Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Gold%20Notebook.ipynb)
+  
+  ![Gold Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/gold_notebook_pic.png)
 
 
-7. Create the Silver Notebook
+## 9. Connect Data Factory to PySpark Notebooks
+    Open the Data factory created earlier and connect the notebooks created.
+   ![Data Factory](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/data_factory_pipeline.png)
 
-New notebook → Name: silver_transform
-Code:
+## 10. Run the Pipeline
+    Trigger a run after connecting all notebooks, and wait for all three notebooks to complete successfully like in the picture below. Then verify that all tables have been created.
 
-bronze_df = spark.read.format("delta").table("bronze_transactions")
-
-silver_df = (bronze_df
-    .dropDuplicates()
-    .withColumn("amount", col("amount").cast("double"))
-)
-
-silver_df.write.format("delta").mode("overwrite").saveAsTable("silver_transactions")
-
-
-
-silver_df = spark.read.format("delta").table("silver_transactions")
-
-gold_df = (silver_df.groupBy("customer_id")
-    .agg(
-        sum("amount").alias("total_spend"),
-        count("*").alias("transaction_count")
-    )
-)
-
-gold_df.write.format("delta").mode("overwrite").saveAsTable("gold_customer_summary")
-
-
-
-9. Connect Data Factory to PySpark Notebooks
-In pipeline pl_financial_medallion:
-
-Add Notebook activity → select bronze_ingest
-Add second Notebook activity → silver_transform
-→ connect with success dependency from Bronze
-Add third Notebook activity → gold_aggregate
-→ connect with success dependency from Silver
-
-Pipeline order:
-textbronze_ingest → silver_transform → gold_aggregate
-10. Run the Pipeline
-
-Click Run
-Wait for all three notebooks to complete successfully
-
-Verify Delta tables exist under Tables:
-
-bronze_transactions
-silver_transactions
-gold_customer_summary
+    ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
+    
 
 Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
