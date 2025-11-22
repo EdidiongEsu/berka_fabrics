@@ -45,9 +45,9 @@ graph TD
 ```
 
 ## Source Dataset
-[Source of data is here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset)
+The 8 original CSV files can be accessed [here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset).
 
-The 8 original CSV files (can be accessed in this repository [here](https://github.com/EdidiongEsu/berka_fabrics/tree/main/data/Bronze%20layer)):
+The table below is a quick overview of each file. More details also [here](https://webpages.charlotte.edu/mirsad/itcs6265/group1/domain.html)
 
 | File               | Rows       | Description                          |
 |--------------------|------------|--------------------------------------|
@@ -74,7 +74,7 @@ The data output of this project are the **5 production-ready gold tables** that 
 | **z_gold_client_360** | **5,369** | One row per client with lifetime spend, latest card, defaulter flag, high-value flags, dormant cards, etc. |
 
 #### Gold Tables Connection Diagram
-The robustness of the gold tables meant joins of several cleaned silver tables. This diagram shows the connection between silver and gold tables.
+The robustness of the gold tables meant joins of several cleaned silver tables. The diagram below shows the connection between silver and gold tables created.
 
 Database diagram connection of silver and gold tables:
 ![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
