@@ -26,10 +26,9 @@ This project transforms the 8 raw CSVs into a **production-grade analytics lakeh
 Result: **5 gold tables** that answer 99 % of related banking analytics questions in seconds.
 
 ## Project Goal
-- Ingest & clean all 8 original CSV files
+- Ingest all 8 original CSV files into Bronze Layer
 - Build a documented Silver layer
 - Deliver a Gold layer optimized for credit-card analytics, client segmentation, and risk
-- Enable instant Power BI dashboards via Direct Lake mode
 - Fully document a reproducible approach to implementing the project
 
 **Status: 100% complete • Production-ready**
