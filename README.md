@@ -79,18 +79,107 @@ Database diagram connection of silver and gold tables:
 
 # How to Reproduce
 
-100% inside Microsoft Fabric Lakehouse — no Databricks, no ADF.
+This project uses **Microsoft Fabric Data Factory** to ingest a CSV financial dataset into a Fabric Lakehouse, where PySpark notebooks process the data through the **Bronze → Silver → Gold** layers following the Medallion Architecture.
 
-## 1. Create a Fabric Lakehouse
-- Create Lakehouse (e.g., `berka_lakehouse`)
-- Upload the 8 CSV files into: `Files/berka/`
+Follow the steps below to recreate the environment.
 
-## 2. Create Silver Tables
+## 1. Create a Microsoft Fabric Account
+- Go to the Microsoft Fabric portal: https://app.fabric.microsoft.com
+- Sign in with your Microsoft account
+- Enable **Fabric Trial** (if not already active)
+
+You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
+
+## 2. Create a Workspace
+- Workspaces → **New workspace**
+- Name: `fabric-medallion-project`
+- Turn ON the following features:
+  - Data Engineering
+  - Data Factory
+  - Power BI
+- Create
+
+## 3. Create a Fabric Lakehouse
+- In the workspace → **New** → **Lakehouse**
+- Name: `financial_lakehouse`
+- Inside the Lakehouse → **Files** section → create folder:
+
+
+  
+## 4. Upload Raw CSV Data (Bank Transactions)
+- Download your bank transactions CSV
+- Lakehouse → Files → landing_zone → **Upload**
+- Confirm the file appears as:
+
+
+
+## 5. Set Up Microsoft Fabric Data Factory
+- In the workspace → **New** → **Data pipeline**
+- Name the pipeline: `pl_financial_medallion`
+
+## 6. Create the Bronze Notebook
+- In the Lakehouse → **New notebook**
+- Name: `bronze_ingest`
+- Paste the following code:
 
 ```python
-spark.sql("CREATE TABLE silver_dim_client       USING CSV OPTIONS (header=true, inferSchema=true) LOCATION 'Files/berka/client.csv'")
-spark.sql("CREATE TABLE silver_dim_district     USING CSV OPTIONS (header=true, inferSchema=true) LOCATION 'Files/berka/district.csv'")
-spark.sql("CREATE TABLE silver_dim_disposition  USING CSV OPTIONS (header=true, inferSchema=true) LOCATION 'Files/berka/disposition.csv'")
-spark.sql("CREATE TABLE silver_dim_card         USING CSV OPTIONS (header=true, inferSchema=true) LOCATION 'Files/berka/card.csv'")
-spark.sql("CREATE TABLE silver_fact_loan        USING CSV OPTIONS (header=true, inferSchema=true) LOCATION 'Files/berka/loan.csv'")
-spark.sql("CREATE TABLE silver_fact_transaction USING CSV OPTIONS (header=true, inferSchema=true) LOCATION 'Files/berka/trans.csv'")
+df = (spark.read
+    .option("header", "true")
+    .option("inferSchema", "true")
+    .csv("Files/landing_zone/transactions.csv"))
+
+df.write.format("delta").mode("overwrite").saveAsTable("bronze_transactions")
+```
+
+7. Create the Silver Notebook
+
+New notebook → Name: silver_transform
+Code:
+
+bronze_df = spark.read.format("delta").table("bronze_transactions")
+
+silver_df = (bronze_df
+    .dropDuplicates()
+    .withColumn("amount", col("amount").cast("double"))
+)
+
+silver_df.write.format("delta").mode("overwrite").saveAsTable("silver_transactions")
+
+
+
+silver_df = spark.read.format("delta").table("silver_transactions")
+
+gold_df = (silver_df.groupBy("customer_id")
+    .agg(
+        sum("amount").alias("total_spend"),
+        count("*").alias("transaction_count")
+    )
+)
+
+gold_df.write.format("delta").mode("overwrite").saveAsTable("gold_customer_summary")
+
+
+
+9. Connect Data Factory to PySpark Notebooks
+In pipeline pl_financial_medallion:
+
+Add Notebook activity → select bronze_ingest
+Add second Notebook activity → silver_transform
+→ connect with success dependency from Bronze
+Add third Notebook activity → gold_aggregate
+→ connect with success dependency from Silver
+
+Pipeline order:
+textbronze_ingest → silver_transform → gold_aggregate
+10. Run the Pipeline
+
+Click Run
+Wait for all three notebooks to complete successfully
+
+Verify Delta tables exist under Tables:
+
+bronze_transactions
+silver_transactions
+gold_customer_summary
+
+Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
