@@ -1,5 +1,4 @@
-# End to End Fabrics Data Engineering Piepeline of Banking Transactions
-**100% Built in Microsoft Fabric • Delta Lake • Power BI Direct Lake**
+# End to End Fabrics Data Engineering Piepeline of Czech Banking Transactions
 
 [![Microsoft Fabric](https://img.shields.io/badge/Microsoft_Fabric-100%25-0066FF?style=for-the-badge&logo=microsoft)](https://fabric.microsoft.com/)
 [![Delta Lake](https://img.shields.io/badge/Delta_Lake-Gold_Layer-00C4B4?style=for-the-badge)](https://delta.io/)
@@ -55,6 +54,11 @@ Source: https://data.world/lpetrocelli/pkdd99-financial-data
 | loan.csv           | 682        | Loans + status (A/D = good/bad)      |
 | order.csv          | 6,471      | Permanent orders                     |
 | trans.csv          | 1,056,320  | All transactions                     |
+
+#### Gold tables structure
+Database diagram connection of silver and gold tables:
+![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
+
 
 ## Architecture (Medallion)
 
