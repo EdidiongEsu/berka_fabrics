@@ -126,13 +126,12 @@ You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
 
 
 ## 9. Connect Data Factory to PySpark Notebooks
-    Open the Data factory created earlier and connect the notebooks created.
+- Open the Data factory created earlier and connect the notebooks created.
    ![Data Factory](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/data_factory_pipeline.png)
 
 ## 10. Run the Pipeline
-    Trigger a run after connecting all notebooks, and wait for all three notebooks to complete successfully like in the picture below. Then verify that all tables have been created.
-
+- Trigger a run after connecting all notebooks, and wait for all three notebooks to complete successfully like in the picture below. Then verify that all tables have been created.
+    
     ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
     
-
 Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
