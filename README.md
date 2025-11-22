@@ -1,16 +1,12 @@
 # End-to-End Fabrics Data Engineering Pipeline of Banking Loan Transactions
-**100% Built in Microsoft Fabric • Delta Lake • Power BI Direct Lake**
 
-[![Microsoft Fabric](https://img.shields.io/badge/Microsoft_Fabric-100%25-0066FF?style=for-the-badge&logo=microsoft)](https://fabric.microsoft.com/)
-[![Delta Lake](https://img.shields.io/badge/Delta_Lake-Gold_Layer-00C4B4?style=for-the-badge)](https://delta.io/)
-[![Power BI](https://img.shields.io/badge/Power_BI-Direct_Lake-FFD246?style=for-the-badge&logo=powerbi)](https://powerbi.microsoft.com/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
+## Navigation/Quick Access
+Quickly move to the section you are interested in by clicking on the appropriate link:
 
-## Navigation
 - [Overview](#overview)
 - [Project Goal](#project-goal)
-- [Dataset](#dataset)
 - [Architecture (Medallion)](#architecture-medallion)
+- [Source Dataset](#source-dataset)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [How to Reproduce](#how-to-reproduce)
 - [Power BI Dashboard](#power-bi-dashboard)
@@ -48,8 +44,8 @@ graph TD
     C --> D[Power BI<br>Direct Lake Mode]
 ```
 
-## Dataset
-[Ingestion Source of data is here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset)
+## Source Dataset
+[Source of data is here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset)
 
 The 8 original CSV files (can be accessed in this repository [here](https://github.com/EdidiongEsu/berka_fabrics/tree/main/data/Bronze%20layer)):
 
