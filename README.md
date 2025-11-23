@@ -142,7 +142,7 @@ Well Done! You now have a fully working Medallion Architecture pipeline in Micro
 
 ## Pipeline Performance
 The pipeline successfully ingested 8 source files containing more than 1.07 million raw records. It transformed the data into the Bronze, Silver, and Gold layers and produced 1.28 million records across the final Gold tables.
-The entire process, including ingestion, PySpark transformations, joins, aggregations, and Gold table creation, completed in under 5 minutes (indicated in the pipeline run picture above) on a relatively slow 35 Mbps network at the time.
+The entire process, including ingestion, PySpark transformations, joins, aggregations, and Gold table creation, completed in under 5 minutes (indicated in the pipeline run picture above) on a relatively slow 30 Mbps network at the time.
 
 This shows **strong pipeline performance**, efficient Spark execution, and an **optimized Medallion architecture** even under limited network conditions.
 
