@@ -107,8 +107,15 @@ You’ll get access to Data Factory, Lakehouse, Notebooks, and Power BI.
 
 ### 6. Create the Bronze Notebook
 - In the Lakehouse, Create a new notebook and name it `Bronze Notebook` or download from repository [here](https://github.com/EdidiongEsu/berka_fabrics/blob/main/code/Fabrics%20Notebooks/Bronze%20Notebook.ipynb)
-  
+-  Always ensure that when you create a notebook, you connect to the existing Lakehouse you created by adding data sources (click on add data items on the left pane like in the picture below and select the lakehouse
+  you created.
+
+  ![Add lakehouse](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/add_data_bronze.png)
+
+You will then see the lakehouse on the left and full code like in this picture here:
+
   ![Bronze Notebook](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/bronze_notebook_pic.png)
+
 
 
 ### 7. Create the Silver Notebook
