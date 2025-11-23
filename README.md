@@ -9,8 +9,10 @@ Quickly move to the section you are interested in by clicking on the appropriate
 - [Source Dataset](#source-dataset)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [How to Reproduce](#how-to-reproduce)
-- [Power BI Dashboard](#power-bi-dashboard)
+- [Semantic model](#semantic-model)
+- [Power BI Dashboard](#dashboard)
 
+---
 ## Overview
 The **PKDD’99 Financial Dataset** (aka **Berka dataset**) is one of the most famous public banking datasets in the world. It contains real anonymized transactional data from a Czech bank (1993–1999). 
 The data was ingested from Kaggle via think [this link](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset). The dataset is originally from [here](https://webpages.charlotte.edu/mirsad/itcs6265/group1/index.html). More extensive information about the dataset there.
@@ -33,6 +35,7 @@ Result: **5 gold tables** that answer 99 % of related banking analytics question
 
 **Status: 100% complete • Production-ready**
 
+---
 ## Architecture (Medallion)
 
 ![Architectural diagram of project](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Fabrics_berka_diagram.png)
@@ -140,3 +143,34 @@ You will then see the lakehouse on the left and full code like in this picture h
     ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
     
 Well Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
+
+---
+## Semantic Model
+Go to the created Lakehouse and create a semantic model. This will be used to create the power BI report.
+
+![connect lakehouse with semantic model](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/connect_lakehouse_semantic.png)
+
+Then use semantic mode to begin creation of the Power BI report
+
+![Created semantic model](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/semantic_model.png)
+
+
+## Dashboard
+### Visualizing in Power BI
+
+The data in the Fabric Lakehouse is visualized using **Power BI** to deliver insights on banking transactions of the Czech bank. The gold tables created are very rich and as a result, the dashboard has many insights. 
+
+![Combined Power BI Visualization](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/dashboard_all.png)
+
+Dashboards include:
+- Total Count of transactions done by the Czech bank
+- Geographic profile of the bank's loan clients
+- Defaulter profile of Clients
+- Daily Transactions of Clients and lots more!
+  
+#### Looking Closer:
+The Visualization link cannot be added here because of the semantic model link as Power BI restricts public sharing then. Looking closer:
+
+![Page 1 Power BI Visualization](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/dashboard_page1.png)
+
+![Page 2 Power BI Visualization](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/dashboard_page2.png)
