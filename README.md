@@ -5,10 +5,10 @@ Quickly move to the section you are interested in by clicking on the appropriate
 
 - [Overview](#overview)
 - [Project Goal](#project-goal)
-- [Architecture (Medallion)](#architecture-medallion)
+- [Project Architecture (Medallion)](#architecture-medallion)
 - [Source Dataset](#source-dataset)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
-- [How to Reproduce](#how-to-reproduce)
+- [How to Reproduce (long section)](#how-to-reproduce)
 - [Pipeline Performance](#pipeline-performance)
 - [Semantic model](#semantic-model)
 - [Power BI Dashboard](#dashboard)
