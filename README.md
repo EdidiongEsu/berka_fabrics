@@ -9,39 +9,35 @@ Quickly move to the section you are interested in by clicking on the appropriate
 - [Source Dataset](#source-dataset)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [How to Reproduce](#how-to-reproduce)
+- [Pipeline Performance](#pipeline-performance)
 - [Semantic model](#semantic-model)
 - [Power BI Dashboard](#dashboard)
 
 ---
 ## Overview
-The **PKDD’99 Financial Dataset** (aka **Berka dataset**) is one of the most famous public banking datasets in the world. It contains real anonymized transactional data from a Czech bank (1993–1999). 
+The **PKDD’99 Financial Dataset** (aka **Berka dataset**) contains real anonymized transactional data from a Czech bank (1993–1999). 
 The data was ingested from Kaggle via think [this link](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset). The dataset is originally from [here](https://webpages.charlotte.edu/mirsad/itcs6265/group1/index.html). More extensive information about the dataset there.
 
-- 5,369 clients
-- 1,056,320 transactions
-- 892 credit cards (classic • junior • gold)
-- 682 loans
-- Full district demographics
+Business Question:
+The bank wants to improve their services. For instance, the bank managers have only vague idea, who is a good client (whom to offer some additional services) and who is a bad client (whom to watch carefully to minimize the bank loses). Fortunately, the bank stores data about their clients, the accounts (transactions within several months), the loans already granted, the credit cards issued The bank managers hope to improve their understanding of customers and seek specific actions to improve services.
 
-This project transforms the 8 raw CSVs into a **production-grade analytics lakehouse** entirely inside **Microsoft Fabric** using the classic **Bronze → Silver → Gold** medallion architecture.
-
-Result: **5 gold tables** that answer 99 % of related banking analytics questions in seconds.
+This project transforms all the raw data into a **production-grade analytics lakehouse** entirely inside **Microsoft Fabric** using the classic **Bronze → Silver → Gold** medallion architecture. It does this within seconds. Then it creates Visualization to assist answer the relevant business question.
 
 ## Project Goal
 - Ingest all 8 original CSV files into Bronze Layer
 - Build a documented Silver layer
-- Deliver a Gold layer optimized for credit-card analytics, client segmentation, and risk
+- Deliver a Gold layer optimized to answer business questions completely
 - Fully document a reproducible approach to implementing the project
-
-**Status: 100% complete • Production-ready**
+- Create a Power BI report that answers key questions for the Czech bank
 
 ---
 ## Architecture (Medallion)
 
 ![Architectural diagram of project](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Fabrics_berka_diagram.png)
 
+---
 ## Source Dataset
-The 8 original CSV (primarily .asc because it uses ; for value seperationi) files can be accessed [here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset).
+The 8 original CSV (primarily .asc because it uses ; for value separation) files can be accessed [here](https://www.kaggle.com/datasets/marceloventura/the-berka-dataset).
 
 The table below is a quick overview of each file. More details also [here](https://webpages.charlotte.edu/mirsad/itcs6265/group1/domain.html)
 
@@ -65,8 +61,8 @@ The data output of this project are the **5 production-ready gold tables** that 
 |-------|-------|-------------|
 | **z_gold_dim_date** | **2,922** | Full calendar for 1993–2000 (`date_sk` as PK). |
 | **z_gold_dim_client** | **5,369** | Enriched client dimension (age in 1999, demographics, card/loan flags). |
-| **z_gold_fact_transaction** | **1,056,320** | Fully enriched transaction fact table with `client_id`, `card_type`, `is_card_transaction`, etc. |
-| **z_gold_monthly_card_spending** | **~35,000** | Monthly credit-card KPIs by client + card type. |
+| **z_gold_fact_transaction** | **1,262,625** | Fully enriched transaction fact table with `client_id`, `card_type`, `is_card_transaction`, etc. |
+| **z_gold_monthly_card_spending** | **5597** | Monthly credit-card KPIs by client + card type. |
 | **z_gold_client_360** | **5,369** | One row per client with lifetime spend, latest card, defaulter flag, high-value flags, dormant cards, etc. |
 
 #### Gold Tables Connection Diagram
@@ -142,7 +138,13 @@ You will then see the lakehouse on the left and full code like in this picture h
     
     ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
     
-Well Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric.
+Well Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric. 
+
+## Pipeline Performance
+The pipeline successfully ingested 8 source files containing more than 1.07 million raw records. It transformed the data into the Bronze, Silver, and Gold layers and produced 1.28 million records across the final Gold tables.
+The entire process, including ingestion, PySpark transformations, joins, aggregations, and Gold table creation, completed in under 5 minutes (indicated in the pipeline run picture above) on a relatively slow 35 Mbps network at the time.
+
+This shows **strong pipeline performance**, efficient Spark execution, and an **optimized Medallion architecture** even under limited network conditions.
 
 ---
 ## Semantic Model
