@@ -33,7 +33,29 @@ This project transforms all the raw data into a **production-grade analytics lak
 ---
 ## Architecture (Medallion)
 
-![Architectural diagram of project](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Fabrics_berka_diagram.png)
+![Alt text](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Berka%20architecture%20Diagram%20flow%20(1).gif)
+
+
+### Medallion Architecture & Data Flow
+
+The pipeline follows a clean **Bronze → Silver → Gold** medallion pattern inside Microsoft Fabric Lakehouse:
+
+- **Bronze**: 8 raw CSV files ingested as-is (1M+ transactions)  
+- **Silver**: 8 cleaned, typed, and linked Delta tables  
+- **Gold**: 5 business-ready tables for instant analytics (dim_date, dim_client, fact_transaction, monthly_card_spending, client_360)
+
+**High-level Data flow**
+
+![High-level flow](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Berka%20architecture%20Diagram%20flow%20(1).png)
+
+**Detailed transformation & table lineage**
+
+Breaking down to showcase the full DAG and table linking
+
+![Detailed Silver → Gold transformation](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Berka%20architecture%20Diagram%20flow%20(2).png)
+
+All gold tables are fully denormalized and optimized — Power BI connects directly and loads in seconds.
+
 
 ---
 ## Source Dataset
@@ -68,7 +90,7 @@ The data output of this project are the **5 production-ready gold tables** that 
 #### Gold Tables Connection Diagram
 The robustness of the gold tables meant joins of several cleaned silver tables. The diagram below shows the connection between silver and gold tables created.
 
-Database diagram connection of silver and gold tables:
+Database diagram connection of silver and gold tables. The full connection can be viewed [here](https://dbdiagram.io/d/Berka-diagram-6932ceca3c4ea889c6b3939b):
 ![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
 
 ---
