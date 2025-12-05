@@ -90,7 +90,7 @@ The data output of this project are the **5 production-ready gold tables** that 
 #### Gold Tables Connection Diagram
 The robustness of the gold tables meant joins of several cleaned silver tables. The diagram below shows the connection between silver and gold tables created.
 
-Database diagram connection of silver and gold tables. The full connection can be viewed [here](https://dbdiagram.io/d/Berka-diagram-6932ceca3c4ea889c6b3939b):
+Database diagram connection of silver and gold tables. The full data connection and linkage can be viewed [here](https://dbdiagram.io/d/Berka-diagram-6932ceca3c4ea889c6b3939b):
 ![Database diagram showing gold and silver connections](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/db_diagram_gold_tables.png)
 
 ---
