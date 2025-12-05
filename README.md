@@ -5,7 +5,7 @@ Quickly move to the section you are interested in by clicking on the appropriate
 
 - [Overview](#overview)
 - [Project Goal](#project-goal)
-- [Project Architecture (Medallion)](#architecture-medallion)
+- [Project Architecture (Medallion)](#data-architecture-medallion)
 - [Source Dataset](#source-dataset)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [How to Reproduce (long section)](#how-to-reproduce)
@@ -36,7 +36,7 @@ This project transforms all the raw data into a **production-grade analytics lak
 ![Alt text](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Berka%20architecture%20Diagram%20flow%20(1).gif)
 
 
-### Medallion Architecture & Data Flow
+### Medallion Layers & Data Flow
 
 The pipeline follows a clean **Bronze → Silver → Gold** medallion pattern inside Microsoft Fabric Lakehouse:
 
