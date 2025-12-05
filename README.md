@@ -31,7 +31,7 @@ This project transforms all the raw data into a **production-grade analytics lak
 - Create a Power BI report that answers key questions for the Czech bank
 
 ---
-## Architecture (Medallion)
+## Data Architecture (Medallion)
 
 ![Alt text](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/Berka%20architecture%20Diagram%20flow%20(1).gif)
 
