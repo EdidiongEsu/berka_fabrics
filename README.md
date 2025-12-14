@@ -9,7 +9,6 @@ Quickly move to the section you are interested in by clicking on the appropriate
 - [Source Dataset](#source-dataset)
 - [Gold Layer – Final Tables](#gold-layer-final-tables)
 - [How to Reproduce (long section)](#how-to-reproduce)
-- [Pipeline Performance](#pipeline-performance)
 - [Semantic model](#semantic-model)
 - [Power BI Dashboard](#dashboard)
 
@@ -161,12 +160,6 @@ You will then see the lakehouse on the left and full code like in this picture h
     ![pipeline run](https://github.com/EdidiongEsu/berka_fabrics/blob/main/pics/pipeline_run.png)
     
 Well Done! You now have a fully working Medallion Architecture pipeline in Microsoft Fabric. 
-
-## Pipeline Performance
-The pipeline successfully ingested 8 source files containing more than 1.07 million raw records. It transformed the data into the Bronze, Silver, and Gold layers and produced 1.28 million records across the final Gold tables.
-The entire process, including ingestion, PySpark transformations, joins, aggregations, and Gold table creation, completed in under 5 minutes (indicated in the pipeline run picture above) on a relatively slow 30 Mbps network at the time.
-
-This shows **strong pipeline performance**, efficient Spark execution, and an **optimized Medallion architecture** even under limited network conditions.
 
 ---
 ## Semantic Model
