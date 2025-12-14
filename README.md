@@ -1,4 +1,4 @@
-# End-to-End Financial Data Engineering Pipeline for Banking Transactions in Microsoft Fabric
+# End-to-End Financial Data Engineering and Analytics Pipeline for Banking Transactions in Microsoft Fabric
 
 ## Navigation/Quick Access
 Quickly move to the section you are interested in by clicking on the appropriate link:
